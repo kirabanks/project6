@@ -57,14 +57,14 @@ addPhraseToDisplay(phraseArray);
 // Create "checkLetter" function that runs on click.
 function checkLetter(clicked) {
     // Variable storing all li elements with the class "letter"
-    const letter = document.getElementsByClassName('letter');
+    const letterChecked = document.getElementsByClassName('letter');
     // Loop over letters to check if it matches the button chosen, if not return null.
     let match = null;
-    for (let i = 0; i < letter.length; i++) {
+    for (let i = 0; i < letterChecked.length; i++) {
         // If it's a match change the class to "show"
-        if (letter[i].textContent.toLowerCase() === clicked.textContent) {
-            letter[i].classList.add('show');
-            match = letter.textContent;
+        if (letterChecked[i].textContent.toLowerCase() === clicked.textContent) {
+            letterChecked[i].classList.add('show');
+            match = letterChecked.textContent;
         }
     }
     return match;
@@ -84,8 +84,30 @@ qwerty.addEventListener('click', (e) => {
             // Remove heart from scoreboard and increase "missed"
             missed ++;
             const lives = document.querySelectorAll('img');
-            lives[missed -1].src = 'images/lostHEart.png';
+            lives[missed -1].src = 'images/lostHeart.png';
         }
     }
+    // Run checkWin function after each guess.
+    checkWin();
 });
+
+// Create function that checks whether the game has been won or lost.
+function checkWin() {
+
+    const letter = document.getElementsByClassName('letter');
+    const show = document.getElementsByClassName('show');
+
+    // Check if the number of letters with class "show" equals class "letter"
+    if (letter.length === show.length) {
+        // If equal, show win overlay
+        overlay.classList.add('win');
+        overlay.style.display = 'flex';
+        document.querySelector('#overlay .title').textContent = 'You win!';
+    } else if (missed > 4) {
+        // Checks if the number of misses is equal to or greater than 5. If so, shows lose overlay.
+        overlay.classList.add('lose');
+        overlay.style.display = 'flex';
+        document.querySelector('#overlay .title').textContent = 'You died...';
+    }
+}
 
