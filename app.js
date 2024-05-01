@@ -5,7 +5,7 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 
 // Create a "missed" variable, initialized to 0.
-const missed = 0;
+let missed = 0;
 
 // Create a "phrases" array.
 const phrases = ["cut to the chase", "busy bee", "close but no cigar", "ugly duckling", "burst your bubble"];
@@ -70,6 +70,7 @@ function checkLetter(clicked) {
     return match;
 }
 
+
 // Add an event listener to the keyboard
 qwerty.addEventListener('click', (e) => {
     // If a player has chosen a letter it gets a "chosen" class and becomes disabled to choose it again.
@@ -78,6 +79,13 @@ qwerty.addEventListener('click', (e) => {
         e.target.disabled = 'true';
         // Pass to checkLetter function, and store in variable.
         const letterFound = checkLetter(e.target);
+        // Check if the value of letterFOund is null
+        if (letterFound === null) {
+            // Remove heart from scoreboard and increase "missed"
+            missed ++;
+            const lives = document.querySelectorAll('img');
+            lives[missed -1].src = 'images/lostHEart.png';
+        }
     }
 });
 
