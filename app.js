@@ -69,3 +69,15 @@ function checkLetter(clicked) {
     }
     return match;
 }
+
+// Add an event listener to the keyboard
+qwerty.addEventListener('click', (e) => {
+    // If a player has chosen a letter it gets a "chosen" class and becomes disabled to choose it again.
+    if (e.target.tagName === 'BUTTON') {
+        e.target.className = 'chosen';
+        e.target.disabled = 'true';
+        // Pass to checkLetter function, and store in variable.
+        const letterFound = checkLetter(e.target);
+    }
+});
+
