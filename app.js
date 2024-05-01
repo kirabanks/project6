@@ -21,7 +21,7 @@ startButton.addEventListener('click', () => {
 // Has to work on any array
 function getRandomPhraseAsArray(arr) {
     // Randomly choose a phrase from "phrases" and associate with a number based on length.
-    let randomNumber = Math.floor(Math.random() * arr.length)
+    let randomNumber = Math.floor(Math.random() * arr.length);
     // Variable holding the random phrase and number
     let randomPhrase = arr[randomNumber];
     // Create a new array holding a string of each charcter of randomPhrase including spaces.
@@ -30,5 +30,26 @@ function getRandomPhraseAsArray(arr) {
     return splitPhrase;
 }
 
-// Testing
-console.log(getRandomPhraseAsArray(phrases));
+// Create an "addPhraseToDisplay" function that loops through an array of characters.
+const phraseArray = getRandomPhraseAsArray(phrases);
+const phraseLI = document.querySelector('ul');
+
+function addPhraseToDisplay(arr) {
+    // Write a loop that creates a li for each character.
+    for (let i = 0; i < arr.length; i++) {
+        const list = document.createElement('li');
+        // Put Character inside of list item
+        let text = arr[i];
+        list.textContent = text;
+        // Label if the character is a space or letter.
+        if (text === ' ') {
+             list.className = 'space';
+        } else {
+            list.className = 'letter';
+        }
+        // Append to the #phrase ul
+        phraseLI.appendChild(list);
+    }
+}
+
+addPhraseToDisplay(phraseArray);
