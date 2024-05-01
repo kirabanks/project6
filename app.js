@@ -18,17 +18,17 @@ startButton.addEventListener('click', () => {
 });
 
 // Create a "getRandomPhraseAsArray" function that chooses a random phrase, splits the phrase into a new array of characters, and returns the phrase into a new array.
-function getRandomPhraseAsArray() {
-    // Randomly choose a phrase from "phrases"
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    // Variable holding the length of the selected phrase.
-    const phraseLength = randomPhrase.length;
+// Has to work on any array
+function getRandomPhraseAsArray(arr) {
+    // Randomly choose a phrase from "phrases" and associate with a number based on length.
+    let randomNumber = Math.floor(Math.random() * arr.length)
+    // Variable holding the random phrase and number
+    let randomPhrase = arr[randomNumber];
     // Create a new array holding a string of each charcter of randomPhrase including spaces.
-    const newPhraseArray = randomPhrase.split("");
+    const splitPhrase = randomPhrase.split("");
     // Returns the new array.
-    return newPhraseArray;
+    return splitPhrase;
 }
 
-
 // Testing
-console.log(getRandomPhraseAsArray());
+console.log(getRandomPhraseAsArray(phrases));
