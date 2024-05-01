@@ -53,3 +53,19 @@ function addPhraseToDisplay(arr) {
 }
 
 addPhraseToDisplay(phraseArray);
+
+// Create "checkLetter" function that runs on click.
+function checkLetter(clicked) {
+    // Variable storing all li elements with the class "letter"
+    const letter = document.getElementsByClassName('letter');
+    // Loop over letters to check if it matches the button chosen, if not return null.
+    let match = null;
+    for (let i = 0; i < letter.length; i++) {
+        // If it's a match change the class to "show"
+        if (letter[i].textContent.toLowerCase() === clicked.textContent) {
+            letter[i].classList.add('show');
+            match = letter.textContent;
+        }
+    }
+    return match;
+}
