@@ -79,7 +79,7 @@ qwerty.addEventListener('click', (e) => {
             // Remove heart from scoreboard and increase misses
             missed ++;
             const lives = document.querySelectorAll('img');
-            lives[missed -1].src = 'images/lostHeart.png';
+            lives[missed -1].src = 'images/lostHeart2.png';
         }
     }
     // Runs the function to check if player won after each guess.
@@ -98,11 +98,18 @@ function checkWin() {
         overlay.classList.add('win');
         overlay.style.display = 'flex';
         document.querySelector('#overlay .title').textContent = 'You win!';
+        document.querySelector('.btn__reset').textContent = 'Play Again';
     } else if (missed > 4) {
         // Checks if the number of misses is equal to or greater than 5. If so, shows lose overlay.
         overlay.classList.add('lose');
         overlay.style.display = 'flex';
         document.querySelector('#overlay .title').textContent = 'You died...';
+        document.querySelector('.btn__reset').textContent = 'Try Again';
     }
+
+    // Resets game to play again.
+    startButton.addEventListener('click', () => {
+        window.location.reload();
+    });
 }
 
